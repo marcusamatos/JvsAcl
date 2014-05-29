@@ -14,7 +14,7 @@ This is very simple, only implement the `JvsAcl\Entity\UserGroupProviderInterfac
 
 ```json
 "required": {
-    "marcusamatos/jvs-acl": "dev-master"
+    "marcusamatos/jvs-acl": "1.*"
 }
 ```
 
