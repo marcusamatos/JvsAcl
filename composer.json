@@ -25,6 +25,9 @@
     "autoload": {
         "psr-0": {
             "JvsAcl\\": "src/"
-        }
+        },
+        "classmap": [
+            "./Module.php"
+        ]
     }
 }
