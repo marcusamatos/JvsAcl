@@ -74,8 +74,17 @@ class AclEvents implements ListenerAggregateInterface {
                 $acl = new Acl($jvsAclConfig, $controllerName);
 
                 if(!$acl->isAllowed($groupName, $controllerName, $actionName)){
-                    $routeMatch->setParam('controller', 'JvsAcl\Controller\Acl');
-                    $routeMatch->setParam('action', 'denied');
+
+                    if($groupName != 'guest' && isset($jvsAclConfig['default-denied-authenticate-controller']) && isset($jvsAclConfig['default-denied-authenticate-action'])){
+                        $routeMatch->setParam('controller', $jvsAclConfig['default-denied-authenticate-controller']);
+                        $routeMatch->setParam('action', $jvsAclConfig['default-denied-authenticate-action']);
+                    }else if(isset($jvsAclConfig['default-denied-controller']) && isset($jvsAclConfig['default-denied-action'])) {
+                        $routeMatch->setParam('controller', $jvsAclConfig['default-denied-controller']);
+                        $routeMatch->setParam('action', $jvsAclConfig['default-denied-action']);
+                    }else{
+                        $routeMatch->setParam('controller', 'JvsAcl\Controller\Acl');
+                        $routeMatch->setParam('action', 'denied');
+                    }
                 }
 
 

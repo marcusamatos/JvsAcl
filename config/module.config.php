@@ -4,6 +4,10 @@
 
 return array(
     'jvs-acl' => array(
+        'default-denied-controller' => 'JvsAcl\Controller\Acl',
+        'default-denied-action' => 'denied',
+        'default-denied-authenticate-controller' => null,
+        'default-denied-authenticate-action' => null,
         'groups' => array(
             'guest',
             'member' => array('name' => 'Member', 'parent' => 'guest', 'visible' => true),
